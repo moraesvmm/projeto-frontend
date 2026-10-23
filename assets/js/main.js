@@ -16,14 +16,21 @@ async function carregarReceitasItalianas() {
     renderizarReceitas(receitas);
   } catch (erro) {
     console.error("Erro:", erro);
-    document.getElementById("receitas").innerHTML =
-      "<p>Não foi possível carregar as receitas.</p>";
+    const container = document.getElementById("resultadoBusca");
+    if (container) {
+      container.innerHTML = "<p>Não foi possível carregar as receitas.</p>";
+    }
   }
 }
 
 // Renderiza a receita no HTML
 function renderizarReceitas(receitas) {
-  const container = document.getElementById("receitas");
+  const container = document.getElementById("resultadoBusca");
+
+  if (!container) {
+    console.error("Elemento #resultadoBusca não encontrado no HTML.");
+    return;
+  }
 
   container.innerHTML = receitas
     .map(
@@ -37,6 +44,18 @@ function renderizarReceitas(receitas) {
     )
     .join("");
 }
+
+let receitaSelecionada = null;
+
+const btnEspeciais = document.getElementById("btnEspeciais");
+
+btnEspeciais.addEventListener("click", () => {
+  if (receitaSelecionada) {
+    alert(receitaSelecionada);
+  } else {
+    alert("Nenhuma receita especial selecionada.");
+  }
+});
 
 document.addEventListener("click", async (event) => {
   const botao = event.target.closest("button[data-id]");
@@ -56,14 +75,30 @@ document.addEventListener("click", async (event) => {
     const dados = await resposta.json();
     const receita = dados.meals[0];
 
+    receitaSelecionada = `Receita: ${receita.strMeal}\n\n${receita.strInstructions.slice(0, 300)}...`;
+
     console.log(receita);
 
-    alert(
-      `Receita: ${receita.strMeal}\n\n${receita.strInstructions.slice(0, 300)}...`
-    );
+    const detalhe = document.getElementById("detalheReceita");
+
+    if (!detalhe) {
+      console.error("Elemento #detalheReceita não encontrado no HTML.");
+      return;
+    }
+
+    detalhe.innerHTML = `
+      <div class="modal-receita">
+        <img src="${receita.strMealThumb}" alt="${receita.strMeal}">
+        <h2>${receita.strMeal}</h2>
+        <p>${receita.strInstructions}</p>
+      </div>
+    `;
   } catch (erro) {
     console.error(erro);
-    alert("Não foi possível carregar os detalhes da receita.");
+    const detalhe = document.getElementById("detalheReceita");
+    if (detalhe) {
+      detalhe.innerHTML = "<p>Não foi possível carregar os detalhes da receita.</p>";
+    }
   }
 });
 

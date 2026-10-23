@@ -6,16 +6,24 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <button id="btnEspeciais" type="button">Especiais</button>
+    </header>
     <main>
         <h1>Receitas italianas</h1>
 
-        <form class="receitas">
-            <input type="search">
-            <button type="submit">Buscar</button>
+        <form id="formBusca" class="receitas">
+            <input 
+            id="inputBusca"
+            type="search"
+            placeholder="Digite o nome da receita"/>
+            <button type="submit" id="btnBuscar">Buscar</button>
         </form>
 
+        <div id="resultadoBusca"></div>
+        <div id="detalheReceita"></div>
         
     </main>
-    <script src="js/main.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
