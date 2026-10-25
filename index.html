@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <header>
+      <header>
         <h1>Vero sabore</h1>
         
         <div class="nav-busca">
@@ -22,12 +22,22 @@
                 </ul>
             </nav>
 
-            <form class="busca">
-                <input type="search" placeholder="Busque sua receita...">
-            </form>
-        </div>
+            <button id="btnEspeciais" type="button">Especiais</button>
+
+            <form id="formBusca" class="receitas">
+            <input 
+            id="inputBusca"
+            type="search"
+            placeholder="Digite o nome da receita"/>
+            <button type="submit" id="btnBuscar">Buscar</button>
+        </form>
+    <main>
+        <h1>Receitas italianas</h1>
+
+        <div id="resultadoBusca"></div>
+        <div id="detalheReceita"></div>
         
-    </header>
-    
+    </main>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
