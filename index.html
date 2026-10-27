@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vero Sabore</title>
+
+    <!--CDN do Bootstrap para CSS-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -19,7 +21,7 @@
   <body>
     <header>
       <h1>Vero sabore</h1>
-      <nav class="navbar ms-auto me-4 px-4 navbar-expand-lg">
+      <nav class="navbar ms-auto me-4 px-4">
         <ul class="navbar-nav flex-row gap-4">
           <li>
             <a class="nav-link" href="index.html">Início</a>
@@ -39,7 +41,9 @@
         </ul>
       </nav>
 
+      <!--Formulário da barra de busca-->
       <form id="formBusca" class="receitas">
+        <!--Junta a barra de busca com o button-->
         <div class="input-group">
           <input
             id="inputBusca"
@@ -59,15 +63,84 @@
       </form>
     </header>
 
-    <main>
+    <main class="container my-5">
+      <!--Não sei o que faz-->
       <div id="resultadoBusca"></div>
       <div id="detalheReceita"></div>
+
+      <!--Seção de cards clicáveis com opcões de pratos-->
+      <section class="mb-5">
+        <h2 class="h4 mb-3">Categorias</h2>
+
+        <!--Define o formato do grid de todos os cards-->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+          <!--Card de Massas-->
+          <div class="col">
+            <a
+              href="pages/massas.html"
+              class="card h-100 text-decoration-none shadow-sm border-0"
+            >
+              <div class="card-body text-center">
+                <div class="fs-1">Foto</div>
+                <h3 class="card-title h5">Massas</h3>
+                <p class="card-text text-body-secondary small">Descrição</p>
+              </div>
+            </a>
+          </div>
+
+          <!--Card de Sobremesas-->
+          <div class="col">
+            <a
+              href="pages/sobremesas.html"
+              class="card h-100 text-decoration-none shadow-sm border-0"
+            >
+              <div class="card-body text-center">
+                <div class="fs-1">Foto</div>
+                <h3 class="card-title h5">Sobremesas</h3>
+                <p class="card-text text-body-secondary small">Descrição</p>
+              </div>
+            </a>
+          </div>
+
+          <!--Card de Lanches-->
+          <div class="col">
+            <a
+              href="pages/lanches.html"
+              class="card h-100 text-decoration-none shadow-sm border-0"
+            >
+              <div class="card-body text-center">
+                <div class="fs-1">Foto</div>
+                <h3 class="card-title h5">Lanches</h3>
+                <p class="card-text text-body-secondary small">Descrição</p>
+              </div>
+            </a>
+          </div>
+
+          <!--Card de Drinks-->
+          <div class="col">
+            <a
+              href="pages/drinks.html"
+              class="card h-100 text-decoration-none shadow-sm border-0"
+            >
+              <div class="card-body text-center">
+                <div class="fs-1">Foto</div>
+                <h3 class="card-title h5">Drinks</h3>
+                <p class="card-text text-body-secondary small">Descrição</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <!--Script do Bootstrap-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+
+    <!--Script do main-->
     <script src="assets/js/main.js"></script>
   </body>
 </html>
