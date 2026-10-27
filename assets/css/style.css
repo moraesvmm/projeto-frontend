@@ -20,12 +20,19 @@ header {
   font-size: 1.5rem;
 }
 
-input[type="search"] {
-  margin: 0 1rem 0 0;
-  width: 22rem;
+#inputBusca {
+  width: 16rem;
   height: 3rem;
 }
 
 .btn.btn-light {
   margin: 0 1rem 0 0;
+}
+
+#btnBuscar {
+  margin: 0 16px;
+}
+
+#formBusca {
+  width: 320px;
 }
