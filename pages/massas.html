@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Massas | Vero Sabore</title>
+		<link rel="stylesheet" href="../assets/css/style.css" />
+	</head>
+	<body data-servico="meals" data-filtro="c" data-categoria="Pasta">
+		<header class="site-header">
+			<div class="site-header__inner">
+				<a class="brand" href="../index.html">
+					  <img class="brand__logo" src="../assets/img/logo-vero-sabore.svg" alt="Logo Vero Sabore" />
+					  <span class="brand__copy"><span class="brand__name">Vero Sabore</span><span class="brand__subtitle">Seu site de receitas italianas preferido.</span></span>
+				</a>
+				<nav class="site-nav" aria-label="Categorias de receitas">
+					<ul class="site-nav__list">
+						<li><a class="site-nav__link" href="../index.html">Início</a></li>
+						<li><a class="site-nav__link" href="massas.html" aria-current="page">Massas</a></li>
+						<li><a class="site-nav__link" href="sobremesas.html">Sobremesas</a></li>
+						<li><a class="site-nav__link" href="lanches.html">Lanches</a></li>
+						<li><a class="site-nav__link" href="drinks.html">Drinks</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main class="site-main category-main">
+			<section class="category-intro">
+				<p class="eyebrow">Receitas da turma / 01</p>
+				<h1>Massas</h1>
+				<p class="category-intro__description">Pratos de pasta para juntar todo mundo em volta da mesa.</p>
+			</section>
+			<div id="detalheReceita"></div>
+			<div id="resultadoBusca" class="recipe-grid" aria-live="polite"><p class="status-message">Carregando receitas...</p></div>
+		</main>
+		<script src="../assets/js/main.js"></script>
+	</body>
+</html>

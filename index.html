@@ -19,116 +19,83 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>Vero sabore</h1>
-      <nav class="navbar ms-auto me-4 px-4">
-        <ul class="navbar-nav flex-row gap-4">
-          <li>
-            <a class="nav-link" href="index.html">Início</a>
-          </li>
-          <li>
-            <a class="nav-link" href="pages/massas.html">Massas</a>
-          </li>
-          <li>
-            <a class="nav-link" href="pages/sobremesas.html">Sobremesas</a>
-          </li>
-          <li>
-            <a class="nav-link" href="pages/lanches.html">Lanches</a>
-          </li>
-          <li>
-            <a class="nav-link" href="pages/drinks.html">Drinks</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!--Formulário da barra de busca-->
-      <form id="formBusca" class="receitas">
-        <!--Junta a barra de busca com o button-->
-        <div class="input-group">
-          <input
-            id="inputBusca"
-            class="form-control border-0 ps-4"
-            type="search"
-            placeholder="Digite o nome da receita"
-          />
-          <button
-            id="btn-buscar"
-            class="btn btn-light"
-            type="submit"
-            aria-label="Buscar"
-          >
-            <i class="bi bi-search"></i>
-          </button>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="index.html">
+          <img class="brand__logo" src="assets/img/logo-vero-sabore.svg" alt="Logo Vero Sabore" />
+          <span class="brand__copy">
+            <span class="brand__name">Vero Sabore</span>
+            <span class="brand__subtitle">Seu site de receitas italianas preferido.</span>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Categorias de receitas">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__link" href="index.html" aria-current="page">Início</a></li>
+            <li><a class="site-nav__link" href="pages/massas.html">Massas</a></li>
+            <li><a class="site-nav__link" href="pages/sobremesas.html">Sobremesas</a></li>
+            <li><a class="site-nav__link" href="pages/lanches.html">Lanches</a></li>
+            <li><a class="site-nav__link" href="pages/drinks.html">Drinks</a></li>
+          </ul>
+        </nav>
+        <div class="site-actions">
+          <button id="btnReceitasItalianas" class="header-button" type="button">Italianas</button>
+          <button id="btnEspeciais" class="header-button header-button--quiet" type="button">Especiais</button>
         </div>
-      </form>
+        <form id="formBusca" class="header-search">
+          <input id="inputBusca" type="search" placeholder="Buscar receita" aria-label="Buscar receita" />
+          <button id="btn-buscar" type="submit" aria-label="Buscar">
+            <i class="bi bi-search" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
     </header>
 
-    <main class="container my-5">
-      <!--Não sei o que faz-->
-      <div id="resultadoBusca"></div>
-      <div id="detalheReceita"></div>
+    <main class="site-main home-main">
+      <section class="home-intro">
+        <div>
+          <h1>Receitas italianas</h1>
+          <p class="home-intro__copy">Massas, sobremesas, lanches e drinks.</p>
+        </div>
+      </section>
 
-      <!--Seção de cards clicáveis com opcões de pratos-->
-      <section class="mb-5">
-        <h2 class="h4 mb-3">Categorias</h2>
+      <section aria-label="Receitas italianas">
+        <div id="detalheReceita"></div>
+        <div id="resultadoBusca" class="recipe-grid" aria-live="polite"></div>
+      </section>
 
-        <!--Define o formato do grid de todos os cards-->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
-          <!--Card de Massas-->
-          <div class="col">
-            <a
-              href="pages/massas.html"
-              class="card h-100 text-decoration-none shadow-sm border-0"
-            >
-              <div class="card-body text-center">
-                <div class="fs-1">Foto</div>
-                <h3 class="card-title h5">Massas</h3>
-                <p class="card-text text-body-secondary small">Descrição</p>
-              </div>
-            </a>
-          </div>
-
-          <!--Card de Sobremesas-->
-          <div class="col">
-            <a
-              href="pages/sobremesas.html"
-              class="card h-100 text-decoration-none shadow-sm border-0"
-            >
-              <div class="card-body text-center">
-                <div class="fs-1">Foto</div>
-                <h3 class="card-title h5">Sobremesas</h3>
-                <p class="card-text text-body-secondary small">Descrição</p>
-              </div>
-            </a>
-          </div>
-
-          <!--Card de Lanches-->
-          <div class="col">
-            <a
-              href="pages/lanches.html"
-              class="card h-100 text-decoration-none shadow-sm border-0"
-            >
-              <div class="card-body text-center">
-                <div class="fs-1">Foto</div>
-                <h3 class="card-title h5">Lanches</h3>
-                <p class="card-text text-body-secondary small">Descrição</p>
-              </div>
-            </a>
-          </div>
-
-          <!--Card de Drinks-->
-          <div class="col">
-            <a
-              href="pages/drinks.html"
-              class="card h-100 text-decoration-none shadow-sm border-0"
-            >
-              <div class="card-body text-center">
-                <div class="fs-1">Foto</div>
-                <h3 class="card-title h5">Drinks</h3>
-                <p class="card-text text-body-secondary small">Descrição</p>
-              </div>
-            </a>
-          </div>
+      <section class="category-section" aria-labelledby="categoryTitle">
+        <div class="section-heading">
+          <h2 id="categoryTitle">Categorias</h2>
+        </div>
+        <div class="category-grid">
+          <a class="category-card" href="pages/massas.html">
+            <img class="category-card__image" src="https://www.themealdb.com/images/media/meals/usywpp1511189717.jpg" alt="Massa italiana com camarões" loading="lazy" />
+            <span class="category-card__body">
+              <span class="category-card__title">Massas</span>
+              <span class="category-card__arrow" aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+          <a class="category-card" href="pages/sobremesas.html">
+            <img class="category-card__image" src="https://www.themealdb.com/images/media/meals/wkhg581762773124.jpg" alt="Sobremesa dourada recém-preparada" loading="lazy" />
+            <span class="category-card__body">
+              <span class="category-card__title">Sobremesas</span>
+              <span class="category-card__arrow" aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+          <a class="category-card" href="pages/lanches.html">
+            <img class="category-card__image" src="https://www.themealdb.com/images/media/meals/5jdtie1763289302.jpg" alt="Ajo blanco servido como entrada" loading="lazy" />
+            <span class="category-card__body">
+              <span class="category-card__title">Lanches</span>
+              <span class="category-card__arrow" aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+          <a class="category-card" href="pages/drinks.html">
+            <img class="category-card__image" src="https://www.thecocktaildb.com/images/media/drink/yqvvqs1475667388.jpg" alt="Drink 155 Belmont" loading="lazy" />
+            <span class="category-card__body">
+              <span class="category-card__title">Drinks</span>
+              <span class="category-card__arrow" aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
         </div>
       </section>
     </main>
