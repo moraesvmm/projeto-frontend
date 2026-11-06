@@ -87,6 +87,43 @@ function renderizarReceitas(receitas, servico) {
 // Guarda um resumo da última receita aberta para o botão "Especiais".
 let receitaSelecionada = null;
 
+// Receitas escolhidas para aparecerem aleatoriamente em "Especiais".
+const receitasEspeciais = [
+  { id: "52772", servico: "meals" },
+  { id: "52791", servico: "meals" },
+  { id: "11007", servico: "cocktails" },
+];
+
+// Renderiza uma receita especial diretamente na área de detalhes.
+function mostrarReceitaEspecial(receita, configuracao) {
+  const detalhe = document.getElementById("detalheReceita");
+
+  if (!detalhe) return;
+
+  const ingredientes = Array.from({ length: 20 }, (_, indice) => {
+    const numero = indice + 1;
+    const ingrediente = receita[`strIngredient${numero}`]?.trim();
+    const medida = receita[`strMeasure${numero}`]?.trim();
+
+    return ingrediente ? `<li>${medida ? `${medida} ` : ""}${ingrediente}</li>` : "";
+  })
+    .filter(Boolean)
+    .join("");
+
+  detalhe.innerHTML = `
+    <div class="recipe-detail">
+      <img src="${receita[configuracao.imagem]}" alt="${receita[configuracao.nome]}">
+      <div class="recipe-detail__content">
+        <h2>${receita[configuracao.nome]}</h2>
+        ${ingredientes ? `<h3>Ingredientes</h3><ul>${ingredientes}</ul>` : ""}
+        <p>${receita.strInstructions || "Instruções indisponíveis."}</p>
+      </div>
+    </div>
+  `;
+
+  detalhe.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 // A página inicial mostra receitas italianas somente após o clique na header.
 const btnReceitasItalianas = document.getElementById("btnReceitasItalianas");
 btnReceitasItalianas?.addEventListener("click", () => {
@@ -99,10 +136,33 @@ if (servico && filtro && categoria) {
   carregarReceitas(servico, filtro, categoria);
 }
 
-// Exibe o resumo da última receita aberta ou informa que nenhuma foi selecionada.
+// Carrega uma receita escolhida aleatoriamente na lista de especiais.
 const btnEspeciais = document.getElementById("btnEspeciais");
-btnEspeciais?.addEventListener("click", () => {
-  alert(receitaSelecionada || "Nenhuma receita especial selecionada.");
+btnEspeciais?.addEventListener("click", async () => {
+  const especial = receitasEspeciais[Math.floor(Math.random() * receitasEspeciais.length)];
+  const configuracao = servicosApi[especial.servico];
+
+  try {
+    const resposta = await fetch(
+      `${configuracao.baseUrl}/lookup.php?i=${encodeURIComponent(especial.id)}`
+    );
+
+    if (!resposta.ok) {
+      throw new Error("Erro ao buscar receita especial");
+    }
+
+    const dados = await resposta.json();
+    const receita = dados[configuracao.colecao]?.[0];
+
+    if (!receita) {
+      throw new Error("Receita especial não encontrada");
+    }
+
+    mostrarReceitaEspecial(receita, configuracao);
+  } catch (erro) {
+    console.error(erro);
+    mostrarMensagem("Não foi possível carregar a receita especial.");
+  }
 });
 
 // A delegação também atende aos botões dos cards criados dinamicamente.
